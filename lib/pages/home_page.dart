@@ -61,6 +61,30 @@ class HomePage extends StatelessWidget {
                             child: Image.network(
                                 "http://www.serebii.net/pokemongo/pokemon/001.png"),
                           ),
+                          Column(
+                            children: [
+                              Text(
+                                "Bulbasaur",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 14.0, vertical: 4.0),
+                                child: Text(
+                                  "Grass",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white.withOpacity(0.4),
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                              )
+                            ],
+                          ),
                         ],
                       ),
                     ),
