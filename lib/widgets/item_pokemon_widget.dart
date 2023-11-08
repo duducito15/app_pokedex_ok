@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ItemPokemonWidget extends StatelessWidget {
-  const ItemPokemonWidget({super.key});
+  String name;
+  String image;
+
+  ItemPokemonWidget({required this.name, required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +27,7 @@ class ItemPokemonWidget extends StatelessWidget {
           Positioned(
             right: -15,
             bottom: -10,
-            child: Image.network(
-                "http://www.serebii.net/pokemongo/pokemon/001.png"),
+            child: Image.network(image),
           ),
           Padding(
             padding:
@@ -33,7 +35,7 @@ class ItemPokemonWidget extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "Bulbasaur",
+                  name,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
