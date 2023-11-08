@@ -1,17 +1,27 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatelessWidget {
+  List pokemons = [];
   getDataPokemon() async {
     Uri _uri = Uri.parse(
         "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json");
     http.Response response = await http.get(_uri);
-    print(response.statusCode);
-    print(response.body);
+    // print(response.statusCode);
+    // print(response.body);
+    if (response.statusCode == 200) {
+      //print(response.body);
+      Map<String, dynamic> myMap = json.decode(response.body);
+      pokemons = myMap["pokemon"];
+      print(pokemons);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    getDataPokemon();
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -42,7 +52,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: Colors.amber,
+                        color: Color(0xff4ccfb2),
                         borderRadius: BorderRadius.circular(18.0),
                       ),
                       child: Stack(
@@ -57,33 +67,39 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                            right: -5,
+                            right: -15,
+                            bottom: -10,
                             child: Image.network(
                                 "http://www.serebii.net/pokemongo/pokemon/001.png"),
                           ),
-                          Column(
-                            children: [
-                              Text(
-                                "Bulbasaur",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.bold,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 20.0, horizontal: 10.0),
+                            child: Column(
+                              children: [
+                                Text(
+                                  "Bulbasaur",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 14.0, vertical: 4.0),
-                                child: Text(
-                                  "Grass",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withOpacity(0.4),
-                                  borderRadius: BorderRadius.circular(12.0),
-                                ),
-                              )
-                            ],
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 6.0),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 14.0, vertical: 4.0),
+                                  child: Text(
+                                    "Grass",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withOpacity(0.4),
+                                    borderRadius: BorderRadius.circular(12.0),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ],
                       ),
