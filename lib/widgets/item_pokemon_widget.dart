@@ -45,7 +45,9 @@ class ItemPokemonWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                ItemTypeWidget(),
+                Column(
+                  children: type.map((e) => ItemTypeWidget()).toList(),
+                ),
               ],
             ),
           ),
